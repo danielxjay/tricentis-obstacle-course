@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 
 public class TricentisObstacleCourseEasy extends TestBase {
@@ -115,10 +116,40 @@ public class TricentisObstacleCourseEasy extends TestBase {
 				bottomBoxColor = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div/table/tbody/tr[2]/td["+j+"]/span[@id='mydate"+(i+1)+"']")).getCssValue("background-color");
 				if(!topBoxColor.equals(bottomBoxColor)) {
 					driver.findElement(By.xpath("//*[@id='mydate"+(i+1)+"']")).click();
-				}  
+					}  
 			} i++; j++;
 		} while ( i < driver.findElements(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div/table/tbody/tr[2]/td/span")).size());
 		waitForVisibility(By.id("check")).click();
+		assertTrue(successMessage().isDisplayed());
+	}
+
+	@Test
+	public void futureChristmas21269() {
+		open("21269");
+		Date futureChristmas = new Date();
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE");
+		calendar.set(calendar.get(Calendar.YEAR), 11, 25);
+		calendar.add(Calendar.YEAR, 2);
+		futureChristmas = calendar.getTime();
+		waitForVisibility(By.id("christmasday")).sendKeys(dateFormat.format(futureChristmas));
+		assertTrue(successMessage().isDisplayed());
+	}
+
+	@Test
+	public void redStripe30034() {
+		open("30034");
+		waitForVisibility(By.id("generate")).click();
+		waitForVisibility(By.xpath("//*[@id='obstacle']/div[2]")).click();
+		assertTrue(successMessage().isDisplayed());
+	}
+
+	@Test
+	public void findAndFill73590() {
+		open("73590");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.getElementById('actual').value='ABC';");
+		waitForVisibility(By.id("sample")).click();
 		assertTrue(successMessage().isDisplayed());
 	}
 }

@@ -41,7 +41,7 @@ public class TestBase {
         driver.get(obstacleUrl + obstacleNumber);
     }
 
-    @After
+   // @After
     public void closeBrowser() {
         driver.quit();
     }
