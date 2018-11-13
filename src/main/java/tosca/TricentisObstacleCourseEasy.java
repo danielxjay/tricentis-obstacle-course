@@ -116,7 +116,7 @@ public class TricentisObstacleCourseEasy extends TestBase {
 				bottomBoxColor = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div/table/tbody/tr[2]/td["+j+"]/span[@id='mydate"+(i+1)+"']")).getCssValue("background-color");
 				if(!topBoxColor.equals(bottomBoxColor)) {
 					driver.findElement(By.xpath("//*[@id='mydate"+(i+1)+"']")).click();
-					}  
+				}  
 			} i++; j++;
 		} while ( i < driver.findElements(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div/table/tbody/tr[2]/td/span")).size());
 		waitForVisibility(By.id("check")).click();
